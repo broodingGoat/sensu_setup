@@ -23,11 +23,16 @@ apt-get install -y sensu uchiwa
 mkdir -p /etc/sensu/ssl
 cp ./ssl_certs/client/cert.pem ./ssl_certs/client/key.pem /etc/sensu/ssl
 mkdir -p /etc/sensu/conf.d
-cp ./config/sensu_server/rabbitmq.json /etc/sensu/conf.d
-cp ./config/sensu_server/redis.json /etc/sensu/conf.d
-cp ./config/sensu_server/api.json /etc/sensu/conf.d
-cp ./config/sensu_server/uchiwa.json /etc/sensu/conf.d
-cp ./config/sensu_server/client.json /etc/sensu/conf.d
+cp ./config/sensu_server/config.json /etc/sensu
+cp ./config/sensu_server/rabbitmq.json /etc/sensu
+cp ./config/sensu_server/redis.json /etc/sensu
+cp ./config/sensu_server/api.json /etc/sensu
+cp ./config/sensu_server/uchiwa.json /etc/sensu
+cp ./config/sensu_server/client.json /etc/sensu
+update-rc.d sensu-server defaults
+update-rc.d sensu-client defaults
+update-rc.d sensu-api defaults
+update-rc.d uchiwa defaults
 service sensu-server start
 service sensu-client start
 service sensu-api start
